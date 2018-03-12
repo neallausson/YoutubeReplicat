@@ -10,7 +10,8 @@ import retrofit2.http.Query;
 
 public interface YoutubeService {
     @GET("search")
-    Call<YoutubeVideoResult> GetVideo (@Query( "key")String api_key ,
+    Call<YoutubeVideoResult> GetVideo (
+                         @Query( "key")String api_key ,
                          @Query( "part") String part ,
                          @Query( "q") String q ,
                          @Query("maxResults") int max_result);
