@@ -15,6 +15,11 @@ public class Result {
 
     public SnippetClass snippet;
 
+    public String Id()
+    {
+        return id.get("videoId");
+    };
+
 
 
 

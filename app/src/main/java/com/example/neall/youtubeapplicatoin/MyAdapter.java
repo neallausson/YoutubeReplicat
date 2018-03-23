@@ -1,10 +1,13 @@
 package com.example.neall.youtubeapplicatoin;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.mukesh.tinydb.TinyDB;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -42,11 +45,27 @@ public class MyAdapter extends RecyclerView.Adapter<YoutubeVideoViewHolder> {
     public void onBindViewHolder(YoutubeVideoViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        Result result = this.mDataset.get(position);
+        final Result result = this.mDataset.get(position);
         holder.title.setText(result.snippet.title.toString());
         holder.description.setText(result.snippet.description.toString());
         Picasso.get().load(result.snippet.thumbnails.get("medium").url).into(holder.miniature);
         //holder.Bind(result);
+        holder.space.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("debug","je clique");
+                Intent intent = new Intent(v.getContext(), VideoActivity.class);
+                TinyDB tinyDB = new TinyDB(v.getContext());
+                //intent.putExtra("IS_SHOW",isShow);
+                String id = result.Id();
+                tinyDB.putString("videoid",id);
+                //intent.putExtra("idvideo", id);
+                tinyDB.putString("videodescription",result.snippet.description);
+                v.getContext().startActivity(intent);
+                Log.e("debug",id);
+            }
+        });
+
 
     }
 

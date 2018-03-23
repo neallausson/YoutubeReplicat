@@ -14,5 +14,6 @@ public interface YoutubeService {
                          @Query( "key")String api_key ,
                          @Query( "part") String part ,
                          @Query( "q") String q ,
-                         @Query("maxResults") int max_result);
+                         @Query("maxResults") int max_result,
+                         @Query("type") String type);
 }

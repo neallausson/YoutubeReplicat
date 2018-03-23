@@ -1,6 +1,5 @@
 package com.example.neall.youtubeapplicatoin;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,6 +31,8 @@ public class SearchActivity extends AppCompatActivity implements  OnVideoSelecte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
+
+
         layoutManager = new LinearLayoutManager(this);
 
 
@@ -52,12 +53,11 @@ public class SearchActivity extends AppCompatActivity implements  OnVideoSelecte
                 recyclerView.setLayoutManager(layoutManager);
                 EditText search = (EditText) findViewById(R.id.queryEditText);
                 String q = search.getText().toString();
-                Call<YoutubeVideoResult> videos = service.GetVideo(API_KEY,PART,q,MAX_RESULT);
+                Call<YoutubeVideoResult> videos = service.GetVideo(API_KEY,PART,q,MAX_RESULT,"video");
                 videos.enqueue(new Callback<YoutubeVideoResult>() {
                     @Override
                     public void onResponse(Call<YoutubeVideoResult> call, Response<YoutubeVideoResult> response) {
-                        Log.i("debug", String.valueOf(response.body().items.get(0).snippet.title));
-                        Log.i("debug", String.valueOf(response.body().items.get(0).snippet.description));
+                        //Log.i("debug", String.valueOf(response.body().items.get(0).snippet.description));
 
                         adapter = new MyAdapter(response.body().items);
                         recyclerView.setAdapter(adapter);
@@ -76,10 +76,7 @@ public class SearchActivity extends AppCompatActivity implements  OnVideoSelecte
 
     }
 
-    public void switchActivity()
-    {
 
-    }
 
 
 

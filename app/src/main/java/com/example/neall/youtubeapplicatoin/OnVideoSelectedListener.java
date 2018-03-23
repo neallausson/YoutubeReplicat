@@ -5,4 +5,5 @@ package com.example.neall.youtubeapplicatoin;
  */
 
 public interface OnVideoSelectedListener {
+
 }
