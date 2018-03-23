@@ -61,6 +61,7 @@ public class MyAdapter extends RecyclerView.Adapter<YoutubeVideoViewHolder> {
                 tinyDB.putString("videoid",id);
                 //intent.putExtra("idvideo", id);
                 tinyDB.putString("videodescription",result.snippet.description);
+                tinyDB.putString("videotitle",result.snippet.title);
                 v.getContext().startActivity(intent);
                 Log.e("debug",id);
             }

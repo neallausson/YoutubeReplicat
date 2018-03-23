@@ -26,7 +26,9 @@ public class VideoActivity extends YouTubeBaseActivity implements YouTubePlayer.
         videoPlayer.initialize(API_KEY, this);
 
         TextView textView = findViewById(R.id.textView);
+        TextView textViewTitle = findViewById(R.id.textViewTitle);
         textView.setText(tinyDB.getString("videodescription"));
+        textViewTitle.setText(tinyDB.getString("videotitle"));
 
     }
 
